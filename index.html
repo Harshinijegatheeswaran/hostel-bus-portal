@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hostel Bus Movement Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">HB</div>
+    <div class="brand-copy">
+      <h1>Hostel Bus Portal</h1>
+      <p>Hostel Bus Movement & Student Registration</p>
+    </div>
+    <span class="demo-tag">FRONTEND DEMO</span>
+  </header>
+
+  <main class="page-wrap">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">STUDENT TRANSPORT • HOSTEL MANAGEMENT</p>
+        <h2>Every journey, <span>properly recorded.</span></h2>
+        <p class="hero-copy">Register bus movement digitally and make records easier for hostel administrators to review.</p>
+      </div>
+      <div class="hero-icon" aria-hidden="true">🚌</div>
+    </section>
+
+    <section class="notice">
+      <strong>Demo mode:</strong> records are saved only in this browser. This version does not provide secure accounts or shared live data between devices.
+    </section>
+
+    <section class="role-panel panel">
+      <div>
+        <h3>Open a dashboard</h3>
+        <p class="muted">Choose a view to explore the prototype.</p>
+      </div>
+      <label class="role-select-label" for="roleSelect">Dashboard role
+        <select id="roleSelect">
+          <option value="student">Student</option>
+          <option value="warden">Warden</option>
+          <option value="staff">Hostel Staff</option>
+          <option value="principal">Principal</option>
+        </select>
+      </label>
+    </section>
+
+    <section id="studentView" class="panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">STUDENT DASHBOARD</p>
+          <h3>Register bus movement</h3>
+        </div>
+        <span class="status-pill">New registration</span>
+      </div>
+      <form id="movementForm">
+        <div class="form-grid">
+          <label>Student name
+            <input id="studentName" name="studentName" type="text" placeholder="Enter full name" required maxlength="80">
+          </label>
+          <label>Student ID
+            <input id="studentId" name="studentId" type="text" placeholder="e.g. 24CSE001" required maxlength="30">
+          </label>
+          <label>Room number
+            <input id="room" name="room" type="text" placeholder="e.g. A-204" maxlength="20">
+          </label>
+          <label>Bus / route
+            <input id="busRoute" name="busRoute" type="text" placeholder="Enter bus number or route" required maxlength="80">
+          </label>
+          <label class="full-width">Destination
+            <select id="destination" name="destination" required>
+              <option value="">Select destination</option>
+              <option>Throughout Bus Route</option>
+              <option>College</option>
+              <option>Hostel</option>
+              <option>Bus Stop</option>
+              <option>Town / Shopping</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Movement type
+            <select id="movementType" name="movementType" required>
+              <option value="Sign-out / Departure">Sign-out / Departure</option>
+              <option value="Sign-in / Return">Sign-in / Return</option>
+            </select>
+          </label>
+          <label>Date and time
+            <input id="movementTime" name="movementTime" type="datetime-local" required>
+          </label>
+          <label class="full-width">Purpose / notes (optional)
+            <textarea id="reason" name="reason" rows="3" placeholder="Add any useful details" maxlength="250"></textarea>
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Save movement record</button>
+          <button class="btn btn-light" type="reset" id="resetBtn">Clear form</button>
+        </div>
+      </form>
+      <p id="formMessage" class="form-message" role="status"></p>
+    </section>
+
+    <section id="adminView" class="panel hidden">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow" id="adminEyebrow">ADMIN DASHBOARD</p>
+          <h3 id="adminTitle">Movement overview</h3>
+          <p class="muted" id="adminDescription">Review student movement records.</p>
+        </div>
+        <button id="exportBtn" class="btn btn-light" type="button">Export CSV</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><span>Total records</span><strong id="totalCount">0</strong></div>
+        <div class="stat-card"><span>Departure records</span><strong id="departureCount">0</strong></div>
+        <div class="stat-card"><span>Return records</span><strong id="returnCount">0</strong></div>
+      </div>
+      <div class="table-tools">
+        <input id="searchInput" type="search" placeholder="Search student, ID, route or destination">
+        <button id="clearRecordsBtn" class="btn btn-danger" type="button">Clear demo records</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th><th>Student ID</th><th>Room</th><th>Route</th><th>Destination</th><th>Movement</th><th>Date & time</th>
+            </tr>
+          </thead>
+          <tbody id="recordsBody"></tbody>
+        </table>
+      </div>
+      <p id="emptyState" class="empty-state">No records yet. Add a movement from the Student dashboard.</p>
+    </section>
+
+    <footer>
+      <p>Hostel Bus Movement & Student Registration Portal • Student project prototype</p>
+      <p>For real deployment, connect a secure shared database and authenticated role-based access.</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
