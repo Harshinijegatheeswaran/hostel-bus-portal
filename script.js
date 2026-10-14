@@ -146,3 +146,4 @@ document.getElementById("clearRecordsBtn").addEventListener("click", () => {
 });
 
 updateView();
+renderRecords();
